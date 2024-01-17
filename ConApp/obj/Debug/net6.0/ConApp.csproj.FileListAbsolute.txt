@@ -1,0 +1,14 @@
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ConApp.exe
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ConApp.deps.json
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ConApp.runtimeconfig.json
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ConApp.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ConApp.pdb
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.AssemblyInfoInputs.cache
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.AssemblyInfo.cs
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.csproj.CoreCompileInputs.cache
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\refint\ConApp.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.pdb
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.genruntimeconfig.cache
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ref\ConApp.dll
