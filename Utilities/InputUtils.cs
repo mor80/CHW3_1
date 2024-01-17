@@ -15,8 +15,6 @@ public class InputUtils
         return pressedKey;
     }
     
-    public static str
-    
     /// <summary>
     /// Ask user top or bot and returns user's choice as string.
     /// </summary>
@@ -24,8 +22,8 @@ public class InputUtils
     public static string? TopOrBottom()
     {
         Console.WriteLine("Choose one of the option below:");
-        Console.WriteLine("Press to 1 to see data from the top");
-        Console.WriteLine("Press to 2 to see data from the bottom");
+        Console.WriteLine("Press 1 to see data from the top");
+        Console.WriteLine("Press 2 to see data from the bottom");
         Console.Write(">>> ");
 
         string? pressedKey = Console.ReadKey().KeyChar.ToString();
@@ -126,16 +124,16 @@ public class InputUtils
     /// Asks for path to the file and corrects it.
     /// </summary>
     /// <returns>Corrected file path</returns>
-    public static string? ValidPath()
+    public static string ValidPath()
     {
         while (true)
         {
             Console.Write("Write path to the new file:\n>>> ");
-            string? filePath = Console.ReadLine();
+            string filePath = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(filePath) || !Path.IsPathFullyQualified(filePath))
+            if (string.IsNullOrEmpty(filePath) || !Path.IsPathFullyQualified(filePath) || !File.Exists(filePath))
             {
-                Console.WriteLine("Wrong file path. Try again");
+                Console.WriteLine("Invalid file path. Try again");
                 Console.WriteLine();
             }
 
