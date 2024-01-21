@@ -16,9 +16,9 @@ namespace ConsApp
                 try
                 {
                     Console.Clear();
-                    int stream_choice = InputUtils.CorrectChoice(InputUtils.JsonOrConsole(), 1, 2);
+                    int streamChoice = InputUtils.CorrectChoice(InputUtils.JsonOrConsole(), 1, 2);
                     string filePath = InputUtils.ValidPath();
-                    JsonParser.ReadJson(stream_choice, filePath);
+                    JsonParser.ReadJson(streamChoice, filePath);
                     
                 }
                 catch (ArgumentNullException e)

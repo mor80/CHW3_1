@@ -6,13 +6,18 @@ public static class JsonParser
     {
         switch (choice)
         {
-            case 1:
+            case 2:
+                string json;
+                
                 using (var streamReader = new StreamReader(filePath))
                 {
                     Console.SetIn(streamReader);
-                    string json = Console.In.ReadToEnd();
+                    json = Console.In.ReadToEnd();
+                    
                 }
 
+                Console.WriteLine(json);
+                
                 break;
         }
     }

@@ -7,7 +7,7 @@ public class InputUtils
         Console.WriteLine("Choose one of the option below:");
         Console.WriteLine("Press 1 to read data from console");
         Console.WriteLine("Press 2 to read data from Json file");
-        Console.WriteLine(">>> ");
+        Console.Write(">>> ");
 
         string? pressedKey = Console.ReadKey().KeyChar.ToString();
         Console.WriteLine();
