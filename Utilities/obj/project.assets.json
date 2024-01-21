@@ -1,37 +1,62 @@
 {
   "version": 3,
   "targets": {
-    "net6.0": {}
+    "net6.0": {
+      "ClassLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/ClassLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ClassLib.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "ClassLib/1.0.0": {
+      "type": "project",
+      "path": "../ClassLib/ClassLib.csproj",
+      "msbuildProject": "../ClassLib/ClassLib.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0": []
+    "net6.0": [
+      "ClassLib >= 1.0.0"
+    ]
   },
   "packageFolders": {
-    "/Users/emreguuv/.nuget/packages/": {}
+    "C:\\Users\\egmor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/Utilities/Utilities.csproj",
+      "projectUniqueName": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\Utilities\\Utilities.csproj",
       "projectName": "Utilities",
-      "projectPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/Utilities/Utilities.csproj",
-      "packagesPath": "/Users/emreguuv/.nuget/packages/",
-      "outputPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/Utilities/obj/",
+      "projectPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\Utilities\\Utilities.csproj",
+      "packagesPath": "C:\\Users\\egmor\\.nuget\\packages\\",
+      "outputPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\Utilities\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/emreguuv/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\egmor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ClassLib\\ClassLib.csproj": {
+              "projectPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ClassLib\\ClassLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -59,7 +84,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.414/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

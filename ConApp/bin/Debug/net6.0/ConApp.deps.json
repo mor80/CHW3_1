@@ -7,14 +7,41 @@
   "targets": {
     ".NETCoreApp,Version=v6.0": {
       "ConApp/1.0.0": {
+        "dependencies": {
+          "ClassLib": "1.0.0",
+          "Utilities": "1.0.0"
+        },
         "runtime": {
           "ConApp.dll": {}
+        }
+      },
+      "ClassLib/1.0.0": {
+        "runtime": {
+          "ClassLib.dll": {}
+        }
+      },
+      "Utilities/1.0.0": {
+        "dependencies": {
+          "ClassLib": "1.0.0"
+        },
+        "runtime": {
+          "Utilities.dll": {}
         }
       }
     }
   },
   "libraries": {
     "ConApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "ClassLib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Utilities/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -14,23 +14,6 @@ public class InputUtils
         
         return pressedKey;
     }
-    
-    /// <summary>
-    /// Ask user top or bot and returns user's choice as string.
-    /// </summary>
-    /// <returns>Input from user</returns>
-    public static string? TopOrBottom()
-    {
-        Console.WriteLine("Choose one of the option below:");
-        Console.WriteLine("Press 1 to see data from the top");
-        Console.WriteLine("Press 2 to see data from the bottom");
-        Console.Write(">>> ");
-
-        string? pressedKey = Console.ReadKey().KeyChar.ToString();
-        Console.WriteLine();
-        
-        return pressedKey;
-    }
 
     /// <summary>
     /// Prints menu.
@@ -38,27 +21,18 @@ public class InputUtils
     /// <returns>Chosen option</returns>
     public static string? Menu()
     {
-        Console.WriteLine("What do you want to do with your data?");
-        Console.WriteLine("Write 1 if you want to sort in alphabetical order by District");
-        Console.WriteLine("Write 2 if you want to sort in reversed alphabetical order by District");
-        Console.WriteLine("Write 3 if you want to filter by PaidServiceInfo");
-        Console.WriteLine("Write 4 if you want to filter by AdmArea");
-        Console.WriteLine("Write 5 if you want to filter by PaidServiceInfo and AdmArea");
+        Console.WriteLine("Choose one of the option below:");
+        Console.WriteLine("Press 1 to sort data");
+        Console.WriteLine("Press 2 to filter data");
         Console.Write(">>> ");
 
         string? pressedKey = Console.ReadKey().KeyChar.ToString();
         Console.WriteLine();
         
         return pressedKey;
-    }
-
-    /// <summary>
-    /// Checks user's input and if it is wrong asks for the new input.
-    /// </summary>
-    /// <param name="input">Input from previous methods</param>
-    /// <param name="min">Minimum of numerical part of the variants</param>
-    /// <param name="max">Maximum of numerical part of the variants</param>
-    /// <returns>Corrected integer input</returns>
+    } 
+    
+    
     public static int CorrectChoice(string? input, int min, int max)
     {
         while (true)
@@ -70,7 +44,7 @@ public class InputUtils
 
             Console.WriteLine("Invalid input. Try again");
             Console.Write(">>> ");
-            input = Console.ReadLine();
+            input = Console.ReadKey().KeyChar.ToString();
             Console.WriteLine();
         }
     }
@@ -78,47 +52,41 @@ public class InputUtils
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="len"></param>
+    /// <param name="message"></param>
     /// <returns></returns>
-    public static int CorrNumOfRows(int len)
+    public static string AskForField(string message)
     {
-        Console.Write("Enter the numbers of rows you want to see\n>>> ");
-
         while (true)
         {
-            if (!int.TryParse(Console.ReadLine(), out int rows) || rows < 1 || rows > len)
+            Console.Write($"Choose and write field {message}:\n>>> ");
+            string? field = Console.ReadLine();
+
+            if (string.IsNullOrEmpty(field))
             {
-                Console.WriteLine();
-                Console.Write("Invalid number. Try again\n>>> ");
+                Console.WriteLine("Invalid field name\nTry again");
                 continue;
             }
 
-            Console.WriteLine();
-            return rows;
+            return field;
         }
     }
 
-    /// <summary>
-    /// Asks for fields by which the lis is sorted.
-    /// </summary>
-    /// <param name="fields">1 or 2 fields</param>
-    /// <param name="count">Number of fields in param="fields"</param>
-    /// <returns>Correct names of fields</returns>
-    public static string[] AskForField(string[] fields)
+    public static string AskForFieldValue(string field)
     {
         while (true)
         {
-            Console.Write($"Enter {fields[0]}:\n>>> ");
+            Console.Write($"Write {field} value:\n>>> ");
             string? filterField = Console.ReadLine();
 
             if (!string.IsNullOrEmpty(filterField))
             {
-                return new[] { filterField };
+                return filterField;
             }
 
             Console.WriteLine("Field can not be empty");
         }
     }
+    
 
     /// <summary>
     /// Asks for path to the file and corrects it.

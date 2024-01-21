@@ -15,6 +15,9 @@
       "Utilities/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "ClassLib": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/Utilities.dll": {}
         },
@@ -43,35 +46,37 @@
     ]
   },
   "packageFolders": {
-    "/Users/emreguuv/.nuget/packages/": {}
+    "C:\\Users\\egmor\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/ConApp/ConApp.csproj",
+      "projectUniqueName": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ConApp\\ConApp.csproj",
       "projectName": "ConApp",
-      "projectPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/ConApp/ConApp.csproj",
-      "packagesPath": "/Users/emreguuv/.nuget/packages/",
-      "outputPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/ConApp/obj/",
+      "projectPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ConApp\\ConApp.csproj",
+      "packagesPath": "C:\\Users\\egmor\\.nuget\\packages\\",
+      "outputPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ConApp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/emreguuv/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\egmor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/ClassLib/ClassLib.csproj": {
-              "projectPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/ClassLib/ClassLib.csproj"
+            "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ClassLib\\ClassLib.csproj": {
+              "projectPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\ClassLib\\ClassLib.csproj"
             },
-            "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/Utilities/Utilities.csproj": {
-              "projectPath": "/Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/CHW3_1/Utilities/Utilities.csproj"
+            "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\Utilities\\Utilities.csproj": {
+              "projectPath": "E:\\Emre\\HSE\\C#\\3Module\\CHW3_1\\CHW3_1\\Utilities\\Utilities.csproj"
             }
           }
         }
@@ -101,7 +106,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.414/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }

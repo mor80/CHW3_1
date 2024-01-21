@@ -15,8 +15,9 @@ public static class JsonParser
                     json = Console.In.ReadToEnd();
                     
                 }
-
+                
                 Console.WriteLine(json);
+                Console.OpenStandardInput();
                 
                 break;
         }

@@ -12,3 +12,9 @@ E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\refint\ConApp.dll
 E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.pdb
 E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.genruntimeconfig.cache
 E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ref\ConApp.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ClassLib.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\Utilities.dll
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\ClassLib.pdb
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\bin\Debug\net6.0\Utilities.pdb
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.csproj.AssemblyReference.cache
+E:\Emre\HSE\C#\3Module\CHW3_1\CHW3_1\ConApp\obj\Debug\net6.0\ConApp.csproj.CopyComplete
