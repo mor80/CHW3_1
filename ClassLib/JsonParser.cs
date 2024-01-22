@@ -13,13 +13,11 @@ public static class JsonParser
                 {
                     Console.SetIn(streamReader);
                     json = Console.In.ReadToEnd();
-                    Console.OpenStandardInput();
-                    Console.OpenStandardOutput();
+                    
+                    Console.SetIn(new StreamReader(Console.OpenStandardInput()));
                 }
                 
                 Console.WriteLine(json);
-                Console.OpenStandardInput();
-                
                 break;
         }
     }

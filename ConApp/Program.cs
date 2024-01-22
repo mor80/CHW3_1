@@ -1,5 +1,4 @@
 ﻿using ClassLib;
-using Microsoft.VisualBasic.CompilerServices;
 using Utilities;
 
 
@@ -21,7 +20,7 @@ namespace ConsApp
                     JsonParser.ReadJson(streamChoice, filePath);
 
                     List<Trip> trips = new List<Trip>();
-                        
+                    
                     int dataChange = InputUtils.CorrectChoice(InputUtils.Menu(), 1, 2);
                     switch (dataChange)
                     {
@@ -37,8 +36,6 @@ namespace ConsApp
                             List<Trip> filteredList2 = Sortings.FilterByField(trips, fieldValue, field2);
                             break;
                     }
-                    
-                    
                 }
                 catch (ArgumentNullException e)
                 {
@@ -54,9 +51,11 @@ namespace ConsApp
                 {
                     Console.Write("Press ESC to exit program or any other key to restart\n>>> ");
                     repeatFlag = Console.ReadKey().Key != ConsoleKey.Escape;
+                    Console.WriteLine();
                 }
             }
         }
     }
 }
 // E:\Emre\HSE\C#\3Module\CHW3_1\data_18V.json
+// /Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/data_18V.json
