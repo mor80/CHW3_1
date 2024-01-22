@@ -23,7 +23,7 @@ public class Sortings
     {
         if (fieldName == "travelers" || fieldName == "activities")
         {
-            return trips.Where(element => element[fieldName].Equals(field)).ToList();
+            return trips.Where(element => ((string[]) element[fieldName]).Contains(field)).ToList();
         }
         
         return trips.Where(element => element[fieldName].Equals(field)).ToList();
