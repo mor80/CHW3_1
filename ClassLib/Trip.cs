@@ -24,6 +24,11 @@ public class Trip
 
     public string[] Activities => activities;
 
+    public Trip()
+    {
+        
+    }
+    
     public Trip(int tripId, string destination, string startDate, string endDate, string[] travelers,
         string accommodation, string[] activities)
     {
@@ -65,5 +70,29 @@ public class Trip
     public override string ToString()
     {
         return $"{TripId}, {Destination}, {StartDate}, {EndDate}, {Travelers}, {Accommodation}, {Activities}";
+    }
+    
+    public static List<Trip> Sorting(List<Trip> trips, string fieldName, bool rev = false)
+    {
+        if (fieldName == "travelers" || fieldName == "activities")
+        {
+            return rev
+                ? trips.OrderByDescending(element => ((string[]) element[fieldName]).Length).ToList()
+                : trips.OrderBy(element => ((string[]) element[fieldName]).Length).ToList();
+        }
+    
+        return rev
+            ? trips.OrderByDescending(element => element[fieldName]).ToList()
+            : trips.OrderBy(element => element[fieldName]).ToList();
+    }
+
+    public static List<Trip> FilterByField(List<Trip> trips, string field, string fieldName)
+    {
+        if (fieldName == "travelers" || fieldName == "activities")
+        {
+            return trips.Where(element => ((string[]) element[fieldName]).Contains(field)).ToList();
+        }
+    
+        return trips.Where(element => element[fieldName].Equals(field)).ToList();
     }
 }

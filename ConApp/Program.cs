@@ -15,25 +15,25 @@ namespace ConsApp
                 try
                 {
                     Console.Clear();
-                    int streamChoice = InputUtils.CorrectChoice(InputUtils.JsonOrConsole(), 1, 2);
-                    string filePath = InputUtils.ValidPath();
+                    bool streamChoice = InterfaceUtils.CorrectChoice(InterfaceUtils.JsonOrConsole(), 1, 2) == 1;
+                    string filePath = InterfaceUtils.ValidPath(true);
                     JsonParser.ReadJson(streamChoice, filePath);
 
                     List<Trip> trips = new List<Trip>();
                     
-                    int dataChange = InputUtils.CorrectChoice(InputUtils.Menu(), 1, 2);
+                    int dataChange = InterfaceUtils.CorrectChoice(InterfaceUtils.Menu(), 1, 2);
                     switch (dataChange)
                     {
                         case 1:
-                            string field1 = InputUtils.AskForField("to sort by");
+                            string field1 = InterfaceUtils.AskForField("to sort by");
                             
-                            List<Trip> filteredList1 = Sortings.Sorting(trips, field1);
+                            List<Trip> filteredList1 = Trip.Sorting(trips, field1);
                             break;
                         case 2:
-                            string field2 = InputUtils.AskForField("to filter by");
-                            string fieldValue = InputUtils.AskForFieldValue(field2);
+                            string field2 = InterfaceUtils.AskForField("to filter by");
+                            string fieldValue = InterfaceUtils.AskForFieldValue(field2);
 
-                            List<Trip> filteredList2 = Sortings.FilterByField(trips, fieldValue, field2);
+                            List<Trip> filteredList2 = Trip.FilterByField(trips, fieldValue, field2);
                             break;
                     }
                 }

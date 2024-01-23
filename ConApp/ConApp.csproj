@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ClassLib\ClassLib.csproj" />
-      <ProjectReference Include="..\Utilities\Utilities.csproj" />
     </ItemGroup>
 
 </Project>
