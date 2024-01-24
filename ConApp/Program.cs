@@ -16,26 +16,40 @@ namespace ConsApp
                 {
                     Console.Clear();
                     bool streamChoice = InterfaceUtils.CorrectChoice(InterfaceUtils.JsonOrConsole(), 1, 2) == 1;
-                    string filePath = InterfaceUtils.ValidPath(true);
-                    JsonParser.ReadJson(streamChoice, filePath);
+                    string? filePath = streamChoice ? null : InterfaceUtils.ValidPath(true);
 
-                    List<Trip> trips = new List<Trip>();
-                    
+                    List<Trip> trips = JsonParser.ReadJson(streamChoice, filePath);
+                    if (trips.Count == 0)
+                    {
+                        throw new ArgumentNullException("", "Your json file is empty");
+                    }
+
+                    List<Trip> sortedTrips = new List<Trip>();
+
                     int dataChange = InterfaceUtils.CorrectChoice(InterfaceUtils.Menu(), 1, 2);
                     switch (dataChange)
                     {
                         case 1:
                             string field1 = InterfaceUtils.AskForField("to sort by");
-                            
-                            List<Trip> filteredList1 = Trip.Sorting(trips, field1);
+                            bool sortChoice = InterfaceUtils.CorrectChoice(InterfaceUtils.SortChoice(), 1, 2) == 2;
+
+                            sortedTrips = Trip.Sorting(trips, field1, sortChoice);
                             break;
                         case 2:
                             string field2 = InterfaceUtils.AskForField("to filter by");
                             string fieldValue = InterfaceUtils.AskForFieldValue(field2);
 
-                            List<Trip> filteredList2 = Trip.FilterByField(trips, fieldValue, field2);
+                            sortedTrips = Trip.FilterByField(trips, fieldValue, field2);
                             break;
                     }
+
+                    if (sortedTrips.Count == 0)
+                    {
+                        throw new ArgumentNullException("", "Your sorted json file is empty");
+                    }
+                    
+                    Console.WriteLine("Your data was successfully changed");
+                    
                 }
                 catch (ArgumentNullException e)
                 {

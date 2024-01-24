@@ -69,7 +69,8 @@ public class Trip
 
     public override string ToString()
     {
-        return $"{TripId}, {Destination}, {StartDate}, {EndDate}, {Travelers}, {Accommodation}, {Activities}";
+        return $"Trip ID: {TripId}\nDestination: {Destination}\nStart date: {StartDate}\nEnd date: {EndDate}\n" +
+               $"Travelers: [\n";
     }
     
     public static List<Trip> Sorting(List<Trip> trips, string fieldName, bool rev = false)
@@ -86,13 +87,13 @@ public class Trip
             : trips.OrderBy(element => element[fieldName]).ToList();
     }
 
-    public static List<Trip> FilterByField(List<Trip> trips, string field, string fieldName)
+    public static List<Trip> FilterByField(List<Trip> trips, string fieldValue, string fieldName)
     {
         if (fieldName == "travelers" || fieldName == "activities")
         {
-            return trips.Where(element => ((string[]) element[fieldName]).Contains(field)).ToList();
+            return trips.Where(element => ((string[]) element[fieldName]).Contains(fieldValue)).ToList();
         }
     
-        return trips.Where(element => element[fieldName].Equals(field)).ToList();
+        return trips.Where(element => element[fieldName].Equals(fieldValue)).ToList();
     }
 }

@@ -1,4 +1,7 @@
-﻿namespace Utilities;
+﻿using ClassLib;
+
+
+namespace Utilities;
 
 public class InterfaceUtils
 {
@@ -36,7 +39,113 @@ public class InterfaceUtils
         return pressedKey;
     }
 
-    /// <summary>
+    public static string? SortChoice()
+    {
+        Console.WriteLine("Choose the sorting type:");
+        Console.WriteLine("Press 1 to sort in Alphabetical order");
+        Console.WriteLine("Press 2 to sort in Descending order");
+        Console.Write(">>> ");
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        string? pressedKey = Console.ReadKey().KeyChar.ToString();
+        Console.ResetColor();
+        Console.WriteLine();
+
+        return pressedKey;
+    }
+
+    public static void AskAndWriteInConsole(List<Trip> data)
+    {
+        if (data.Count == 0)
+        {
+            Console.WriteLine("Your data is empty");
+            return;
+        }
+        
+        Console.WriteLine("Choose the writing type in console:");
+        Console.WriteLine("Press 1 to write in Readable way");
+        Console.WriteLine("Press 2 to write in Json format");
+        Console.WriteLine("Press 3 to skip");
+        Console.Write(">>> ");
+        
+        Console.ForegroundColor = ConsoleColor.Green;
+        string? pressedKey = Console.ReadKey().KeyChar.ToString();
+        Console.ResetColor();
+        Console.WriteLine();
+        
+        int choice = CorrectChoice(pressedKey, 1, 3);
+        switch (choice)
+        {
+            case 1:
+                foreach (Trip trip in data)
+                {
+                    Console.WriteLine(trip.ToString());
+                    Console.WriteLine("----------------------------------------" +
+                                      "----------------------------------------" +
+                                      "----------------------------------------");
+                }
+
+                Console.WriteLine();
+                break;
+            case 2:
+                Console.WriteLine("[");
+                
+        }
+    }
+    
+    public static void AskToSave(List<Trip> data)
+    {
+        try
+        {
+            if (data.Count == 0)
+            {
+                Console.WriteLine("Your data is empty");
+                return;
+            }
+            
+            Console.WriteLine("Do you want to save file?");
+            Console.WriteLine("Press 1 if YES");
+            Console.WriteLine("Press 2 if NO");
+            Console.Write(">>> ");
+            int pressedKey = CorrectChoice(Console.ReadLine(), 1, 2);
+            
+            if (pressedKey == 2)
+            {
+                return;
+            }
+
+            string newFilePath = ValidPath();
+            if (File.Exists(newFilePath))
+            {
+                Console.WriteLine("Oh, seems like the file already exists");
+                Console.WriteLine("Write 1 if you want to rewrite it");
+                Console.Write("Write 2 if you want to append at the end\n>>> ");
+                int choice = CorrectChoice(Console.ReadLine(), 1, 2);
+                Console.WriteLine();
+
+                if (choice == 1)
+                {
+                    Write(newFilePath, data, true);
+                    return;
+                }
+
+                Write(newFilePath, data, false);
+                return;
+            }
+            
+            Write(newFilePath, data, true);
+        }
+        catch (IOException e)
+        {
+            throw new IOException("Something went wrong while writing the file", e);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Unknown error occured");
+        }
+    }
+
+/// <summary>
     /// 
     /// </summary>
     /// <param name="input"></param>
@@ -75,23 +184,27 @@ public class InterfaceUtils
     {
         while (true)
         {
-            Console.Write($"Choose and write field {message}:\n>>> ");
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Choose the field {message}:");
 
-            string? field = Console.ReadLine();
+            Console.WriteLine("1. Trip ID");
+            Console.WriteLine("2. Destination");
+            Console.WriteLine("3. Start Date:");
+            Console.WriteLine("4. End Date");
+            Console.WriteLine("5. Travelers");
+            Console.WriteLine("6. Accommodation");
+            Console.WriteLine("7. Activities");
+            Console.Write(">>> ");
+            
+            Console.ForegroundColor = ConsoleColor.Green;
+            string? pressedKey = Console.ReadKey().KeyChar.ToString();
+            string[] fields =
+                { "trip_id", "destination", "start_date", "end_date", "travelers", "accommodation", "activities" };
             Console.ResetColor();
 
-            if (string.IsNullOrEmpty(field))
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Invalid field name\nTry again");
-                Console.WriteLine();
-                Console.ResetColor();
-                continue;
-            }
+            int fieldIndex = CorrectChoice(pressedKey, 1, 7);
 
             Console.WriteLine();
-            return field;
+            return fields[fieldIndex - 1];
         }
     }
 
@@ -99,7 +212,7 @@ public class InterfaceUtils
     {
         while (true)
         {
-            Console.Write($"Write {field} value:\n>>> ");
+            Console.Write($"Write {field.Replace("_", " ")} value:\n>>> ");
             Console.ForegroundColor = ConsoleColor.Green;
 
             string? filterField = Console.ReadLine();
