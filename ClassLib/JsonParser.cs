@@ -9,9 +9,9 @@ public static class JsonParser
     /// <summary>
     /// Method to read Json file using Regex.
     /// </summary>
-    /// <param name="choice">Users choice of stream (Standart or File)</param>
-    /// <param name="filePath">File path</param>
-    /// <returns>List of Trip objects from Json file</returns>
+    /// <param name="choice">Users choice of stream (Standart or File).</param>
+    /// <param name="filePath">File path.</param>
+    /// <returns>List of Trip objects from Json file.</returns>
     public static List<Trip> ReadJson(bool choice, string? filePath = null)
     {
         try
@@ -93,9 +93,9 @@ public static class JsonParser
     /// <summary>
     /// Writes data to json file depending on user choice of stream.
     /// </summary>
-    /// <param name="trips">List of Trips</param>
-    /// <param name="choice">User's choice of stream(true - standart; false - file)</param>
-    /// <param name="filePath">File path</param>
+    /// <param name="trips">List of Trips.</param>
+    /// <param name="choice">User's choice of stream(true - standart; false - file).</param>
+    /// <param name="filePath">File path.</param>
     /// <exception cref="Exception"></exception>
     public static void WriteJson(List<Trip> trips, bool choice, string filePath)
     {
@@ -133,8 +133,6 @@ public static class JsonParser
                     
                     using (StreamWriter streamWriter = new StreamWriter(filePath, false, Encoding.UTF8))
                     {
-                        // streamWriter.AutoFlush = true;
-        
                         Console.SetOut(streamWriter);
                         Console.WriteLine(output.ToString());
                         Console.SetOut(oldOutput);

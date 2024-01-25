@@ -61,7 +61,7 @@ public class Trip
     /// <summary>
     /// Indexator for Trip objects.
     /// </summary>
-    /// <param name="fieldName">Index value(name of the field)</param>
+    /// <param name="fieldName">Index value(name of the field).</param>
     /// <exception cref="ArgumentException"></exception>
     public object this[string fieldName]
     {
@@ -92,7 +92,7 @@ public class Trip
     /// <summary>
     /// Overrided method ToString().
     /// </summary>
-    /// <returns>String</returns>
+    /// <returns>String.</returns>
     public override string ToString()
     {
         return $"Trip ID: {TripId}\nDestination: {Destination}\nStart date: {StartDate}\nEnd date: {EndDate}\n" +
@@ -103,10 +103,10 @@ public class Trip
     /// <summary>
     /// Method filters by field (for diff types of fields).
     /// </summary>
-    /// <param name="trips">List for field</param>
-    /// <param name="fieldName">Which field is being filtered</param>
-    /// <param name="rev">Flag for sorting in Descending way</param>
-    /// <returns>Filtered list of Trip class objects</returns>
+    /// <param name="trips">List for field.</param>
+    /// <param name="fieldName">Which field is being filtered.</param>
+    /// <param name="rev">Flag for sorting in Descending way.</param>
+    /// <returns>Filtered list of Trip class objects.</returns>
     public static List<Trip> Sorting(List<Trip> trips, string fieldName, bool rev = false)
     {
         if (fieldName == "travelers" || fieldName == "activities")
@@ -124,10 +124,10 @@ public class Trip
     /// <summary>
     /// Method filters by field (for diff types of fields).
     /// </summary>
-    /// <param name="trips">List for field</param>
-    /// <param name="fieldValue">Value of field to filter buy</param>
-    /// <param name="fieldName">Which field is being filtered</param>
-    /// <returns>Filtered list of Trip class objects</returns>
+    /// <param name="trips">List for field.</param>
+    /// <param name="fieldValue">Value of field to filter buy.</param>
+    /// <param name="fieldName">Which field is being filtered.</param>
+    /// <returns>Filtered list of Trip class objects.</returns>
     public static List<Trip> FilterByField(List<Trip> trips, string fieldValue, string fieldName)
     {
         if (fieldName == "travelers" || fieldName == "activities")

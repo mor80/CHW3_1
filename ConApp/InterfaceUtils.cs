@@ -9,7 +9,7 @@ public class InterfaceUtils
     /// <summary>
     /// Writes in console user interface.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Pressed key.</returns>
     public static string? JsonOrConsole()
     {
         Console.WriteLine("Choose one of the option below:");
@@ -28,7 +28,7 @@ public class InterfaceUtils
     /// <summary>
     /// Prints menu.
     /// </summary>
-    /// <returns>Chosen option</returns>
+    /// <returns>Pressed key.</returns>
     public static string? Menu()
     {
         Console.WriteLine("Choose one of the option below:");
@@ -47,7 +47,7 @@ public class InterfaceUtils
     /// <summary>
     /// Writes in console user interface.
     /// </summary>
-    /// <returns></returns>
+    /// <returns>Pressed key.</returns>
     public static string? SortChoice()
     {
         Console.WriteLine("Choose the sorting type:");
@@ -66,7 +66,7 @@ public class InterfaceUtils
     /// <summary>
     /// Asks and writes sorted List of Trips considering the choice of the user.
     /// </summary>
-    /// <param name="data">List of Trips</param>
+    /// <param name="data">List of Trips.</param>
     /// <exception cref="ArgumentException"></exception>
     /// /// <returns></returns>
     public static bool AskAndWriteInConsole(List<Trip> data)
@@ -171,10 +171,10 @@ public class InterfaceUtils
     /// <summary>
     /// Checks user's input and if it is wrong asks for the new input.
     /// </summary>
-    /// <param name="input">Input from previous methods</param>
-    /// <param name="min">Minimum of numerical part of the variants</param>
-    /// <param name="max">Maximum of numerical part of the variants</param>
-    /// <returns>Corrected integer input</returns>
+    /// <param name="input">Input from previous methods.</param>
+    /// <param name="min">Minimum of numerical part of the variants.</param>
+    /// <param name="max">Maximum of numerical part of the variants.</param>
+    /// <returns>Corrected integer input.</returns>
     public static int CorrectChoice(string? input, int min, int max)
     {
         while (true)
@@ -202,7 +202,7 @@ public class InterfaceUtils
     /// Asks user for field and writes user interface.
     /// </summary>
     /// <param name="message"></param>
-    /// <returns>Field name</returns>
+    /// <returns>Field name.</returns>
     public static string AskForField(string message)
     {
         while (true)
@@ -234,8 +234,8 @@ public class InterfaceUtils
     /// <summary>
     /// Asks user for field value and writes user interface.
     /// </summary>
-    /// <param name="field">Field name</param>
-    /// <returns>Field value</returns>
+    /// <param name="field">Field name.</param>
+    /// <returns>Field value.</returns>
     public static string AskForFieldValue(string field)
     {
         while (true)
@@ -263,7 +263,7 @@ public class InterfaceUtils
     /// <summary>
     /// Asks for path to the file and corrects it.
     /// </summary>
-    /// <returns>Corrected file path</returns>
+    /// <returns>Corrected file path.</returns>
     public static string ValidPath(bool flag = false)
     {
         while (true)
