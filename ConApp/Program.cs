@@ -18,6 +18,12 @@ namespace ConsApp
                     bool streamChoice = InterfaceUtils.CorrectChoice(InterfaceUtils.JsonOrConsole(), 1, 2) == 1;
                     string? filePath = streamChoice ? null : InterfaceUtils.ValidPath(true);
 
+                    if (streamChoice)
+                    {
+                        Console.WriteLine(
+                            "Write your json file in console (ctr + C ctr + V). After you are done write in console $$$ to stop.");
+                    }
+
                     List<Trip> trips = JsonParser.ReadJson(streamChoice, filePath);
                     if (trips.Count == 0)
                     {
@@ -47,15 +53,21 @@ namespace ConsApp
                     {
                         throw new ArgumentNullException("", "Your sorted json file is empty");
                     }
-                    
-                    Console.WriteLine("Your data was successfully changed");
-                    
+
+                    Console.WriteLine("Your data was successfully changed\n");
+                    bool write = InterfaceUtils.AskAndWriteInConsole(sortedTrips);
+                    string? newFilePath = InterfaceUtils.AskToSave();
+
+                    if (!string.IsNullOrEmpty(newFilePath))
+                    {
+                        JsonParser.WriteJson(sortedTrips, false, newFilePath);
+                    }
                 }
                 catch (ArgumentNullException e)
                 {
                     Console.WriteLine(e.Message);
                     Console.WriteLine();
-                }
+                }                
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message);
@@ -71,5 +83,3 @@ namespace ConsApp
         }
     }
 }
-// E:\Emre\HSE\C#\3Module\CHW3_1\data_18V.json
-// /Users/emreguuv/Documents/EMRE HSE/C# hse/CHW3_1/data_18V.json

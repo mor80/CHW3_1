@@ -7,11 +7,11 @@ namespace ClassLib;
 public static class JsonParser
 {
     /// <summary>
-    /// 
+    /// Method to read Json file using Regex.
     /// </summary>
-    /// <param name="choice"></param>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
+    /// <param name="choice">Users choice of stream (Standart or File)</param>
+    /// <param name="filePath">File path</param>
+    /// <returns>List of Trip objects from Json file</returns>
     public static List<Trip> ReadJson(bool choice, string? filePath = null)
     {
         try
@@ -33,12 +33,14 @@ public static class JsonParser
                     json = input.ToString().Replace("\n", string.Empty);
                     break;
                 case false:
+                    TextReader oldInput = Console.In;
+                    
                     using (var streamReader = new StreamReader(filePath))
                     {
                         Console.SetIn(streamReader);
                         json = Console.In.ReadToEnd();
 
-                        Console.SetIn(new StreamReader(Console.OpenStandardInput()));
+                        Console.SetIn(oldInput);
                     }
 
                     break;
@@ -79,7 +81,7 @@ public static class JsonParser
                     activityList);
                 trips.Add(trip);
             }
-            
+
             return trips;
         }
         catch (Exception e)
@@ -88,7 +90,61 @@ public static class JsonParser
         }
     }
 
-    public static void WriteJson()
+    /// <summary>
+    /// Writes data to json file depending on user choice of stream.
+    /// </summary>
+    /// <param name="trips">List of Trips</param>
+    /// <param name="choice">User's choice of stream(true - standart; false - file)</param>
+    /// <param name="filePath">File path</param>
+    /// <exception cref="Exception"></exception>
+    public static void WriteJson(List<Trip> trips, bool choice, string filePath)
     {
+        try
+        {
+            StringBuilder output = new StringBuilder();
+            output.Append("[\n");
+            int count = 0;
+            foreach (Trip trip in trips)
+            {
+                string str =
+                    $"    \"trip_id\": {trip.TripId},\n    \"destination\": \"{trip.Destination}\",\n    \"start_date\":" +
+                    $" \"{trip.StartDate}\",\n    \"end_date\": \"{trip.EndDate}\",\n    \"travelers\": [\n      \"" +
+                    $"{string.Join("\",\n      \"", trip.Travelers)}\"\n    ],\n    \"accommodation\": \"{trip.Accommodation}\"," +
+                    $"\n    \"activities\": [\n      \"{string.Join("\",\n      \"", trip.Activities)}\"\n    ]\n";
+                count += 1;
+                output.Append("  {\n");
+                output.Append(str);
+                output.Append("  }");
+                if (count != trips.Count)
+                {
+                    output.Append(",\n");
+                }
+            }
+
+            output.Append(']');
+            
+            switch (choice)
+            {
+                case true:
+                    Console.WriteLine(output.ToString());
+                    break;
+                case false:
+                    TextWriter oldOutput = Console.Out;
+                    
+                    using (StreamWriter streamWriter = new StreamWriter(filePath, false, Encoding.UTF8))
+                    {
+                        // streamWriter.AutoFlush = true;
+        
+                        Console.SetOut(streamWriter);
+                        Console.WriteLine(output.ToString());
+                        Console.SetOut(oldOutput);
+                    }
+                    break;
+            }
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Something went wrong while writing your data to file", e);
+        }
     }
 }

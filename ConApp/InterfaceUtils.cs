@@ -1,10 +1,15 @@
-﻿using ClassLib;
+﻿using System.Threading.Channels;
+using ClassLib;
 
 
 namespace Utilities;
 
 public class InterfaceUtils
 {
+    /// <summary>
+    /// Writes in console user interface.
+    /// </summary>
+    /// <returns></returns>
     public static string? JsonOrConsole()
     {
         Console.WriteLine("Choose one of the option below:");
@@ -39,6 +44,10 @@ public class InterfaceUtils
         return pressedKey;
     }
 
+    /// <summary>
+    /// Writes in console user interface.
+    /// </summary>
+    /// <returns></returns>
     public static string? SortChoice()
     {
         Console.WriteLine("Choose the sorting type:");
@@ -54,104 +63,118 @@ public class InterfaceUtils
         return pressedKey;
     }
 
-    public static void AskAndWriteInConsole(List<Trip> data)
+    /// <summary>
+    /// Asks and writes sorted List of Trips considering the choice of the user.
+    /// </summary>
+    /// <param name="data">List of Trips</param>
+    /// <exception cref="ArgumentException"></exception>
+    /// /// <returns></returns>
+    public static bool AskAndWriteInConsole(List<Trip> data)
     {
         if (data.Count == 0)
         {
             Console.WriteLine("Your data is empty");
-            return;
+            throw new ArgumentException("");
         }
-        
+
         Console.WriteLine("Choose the writing type in console:");
         Console.WriteLine("Press 1 to write in Readable way");
         Console.WriteLine("Press 2 to write in Json format");
         Console.WriteLine("Press 3 to skip");
         Console.Write(">>> ");
-        
+
         Console.ForegroundColor = ConsoleColor.Green;
         string? pressedKey = Console.ReadKey().KeyChar.ToString();
         Console.ResetColor();
         Console.WriteLine();
-        
+
         int choice = CorrectChoice(pressedKey, 1, 3);
         switch (choice)
         {
             case 1:
                 foreach (Trip trip in data)
                 {
-                    Console.WriteLine(trip.ToString());
                     Console.WriteLine("----------------------------------------" +
                                       "----------------------------------------" +
                                       "----------------------------------------");
+                    Console.WriteLine(trip.ToString());
                 }
 
+                Console.WriteLine("----------------------------------------" +
+                                  "----------------------------------------" +
+                                  "----------------------------------------");
                 Console.WriteLine();
-                break;
+                
+                return true;
             case 2:
                 Console.WriteLine("[");
-                
-        }
-    }
-    
-    public static void AskToSave(List<Trip> data)
-    {
-        try
-        {
-            if (data.Count == 0)
-            {
-                Console.WriteLine("Your data is empty");
-                return;
-            }
-            
-            Console.WriteLine("Do you want to save file?");
-            Console.WriteLine("Press 1 if YES");
-            Console.WriteLine("Press 2 if NO");
-            Console.Write(">>> ");
-            int pressedKey = CorrectChoice(Console.ReadLine(), 1, 2);
-            
-            if (pressedKey == 2)
-            {
-                return;
-            }
-
-            string newFilePath = ValidPath();
-            if (File.Exists(newFilePath))
-            {
-                Console.WriteLine("Oh, seems like the file already exists");
-                Console.WriteLine("Write 1 if you want to rewrite it");
-                Console.Write("Write 2 if you want to append at the end\n>>> ");
-                int choice = CorrectChoice(Console.ReadLine(), 1, 2);
-                Console.WriteLine();
-
-                if (choice == 1)
+                int count = 0;
+                foreach (Trip trip in data)
                 {
-                    Write(newFilePath, data, true);
-                    return;
+                    string str =
+                        $"    \"trip_id\": {trip.TripId},\n    \"destination\": \"{trip.Destination}\",\n    \"start_date\":" +
+                        $" \"{trip.StartDate}\",\n    \"end_date\": \"{trip.EndDate}\",\n    \"travelers\": [\n      \"" +
+                        $"{string.Join("\",\n      \"", trip.Travelers)}\"\n    ],\n    \"accommodation\": \"{trip.Accommodation}\"," +
+                        $"\n    \"activities\": [\n      \"{string.Join("\",\n      \"", trip.Activities)}\"\n    ]";
+                    count += 1;
+                    Console.WriteLine("  {");
+                    Console.WriteLine(str);
+                    Console.Write("  }");
+                    if (count != data.Count)
+                    {
+                        Console.WriteLine(",");
+                    }
                 }
 
-                Write(newFilePath, data, false);
-                return;
-            }
-            
-            Write(newFilePath, data, true);
+                Console.WriteLine("\n]");
+                Console.WriteLine();
+                return true;
+            case 3:
+                return false;
         }
-        catch (IOException e)
-        {
-            throw new IOException("Something went wrong while writing the file", e);
-        }
-        catch (Exception e)
-        {
-            throw new Exception("Unknown error occured");
-        }
+
+        return true;
     }
 
-/// <summary>
-    /// 
+    /// <summary>
+    /// Asks user to save file.
     /// </summary>
-    /// <param name="input"></param>
-    /// <param name="min"></param>
-    /// <param name="max"></param>
-    /// <returns></returns>
+    public static string? AskToSave()
+    {
+        Console.WriteLine("Do you want to save file?");
+        Console.WriteLine("Press 1 if YES");
+        Console.WriteLine("Press 2 if NO");
+        Console.Write(">>> ");
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        string? pressedKey = Console.ReadKey().KeyChar.ToString();
+        Console.ResetColor();
+        Console.WriteLine();
+
+        int choice = CorrectChoice(pressedKey, 1, 2);
+        if (choice == 2)
+        {
+            return null;
+        }
+
+        string newFilePath = ValidPath();
+        if (File.Exists(newFilePath))
+        {
+            Console.WriteLine("Oh, seems like the file already exists");
+            Console.WriteLine("Your file will be rewrited");
+            Console.WriteLine();
+        }
+
+        return newFilePath;
+    }
+
+    /// <summary>
+    /// Checks user's input and if it is wrong asks for the new input.
+    /// </summary>
+    /// <param name="input">Input from previous methods</param>
+    /// <param name="min">Minimum of numerical part of the variants</param>
+    /// <param name="max">Maximum of numerical part of the variants</param>
+    /// <returns>Corrected integer input</returns>
     public static int CorrectChoice(string? input, int min, int max)
     {
         while (true)
@@ -176,10 +199,10 @@ public class InterfaceUtils
     }
 
     /// <summary>
-    /// 
+    /// Asks user for field and writes user interface.
     /// </summary>
     /// <param name="message"></param>
-    /// <returns></returns>
+    /// <returns>Field name</returns>
     public static string AskForField(string message)
     {
         while (true)
@@ -188,13 +211,13 @@ public class InterfaceUtils
 
             Console.WriteLine("1. Trip ID");
             Console.WriteLine("2. Destination");
-            Console.WriteLine("3. Start Date:");
+            Console.WriteLine("3. Start Date");
             Console.WriteLine("4. End Date");
             Console.WriteLine("5. Travelers");
             Console.WriteLine("6. Accommodation");
             Console.WriteLine("7. Activities");
             Console.Write(">>> ");
-            
+
             Console.ForegroundColor = ConsoleColor.Green;
             string? pressedKey = Console.ReadKey().KeyChar.ToString();
             string[] fields =
@@ -208,6 +231,11 @@ public class InterfaceUtils
         }
     }
 
+    /// <summary>
+    /// Asks user for field value and writes user interface.
+    /// </summary>
+    /// <param name="field">Field name</param>
+    /// <returns>Field value</returns>
     public static string AskForFieldValue(string field)
     {
         while (true)
@@ -257,7 +285,7 @@ public class InterfaceUtils
                     continue;
                 }
             }
-            
+
             if (string.IsNullOrEmpty(filePath) || !Path.IsPathFullyQualified(filePath))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
